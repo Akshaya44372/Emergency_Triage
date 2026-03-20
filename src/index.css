@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+.ecg-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(59, 130, 246, 0.3) 0px,
+      transparent 1px,
+      transparent 40px,
+      rgba(59, 130, 246, 0.3) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(59, 130, 246, 0.3) 0px,
+      transparent 1px,
+      transparent 40px,
+      rgba(59, 130, 246, 0.3) 41px
+    );
+  animation: ecg-pulse 20s ease-in-out infinite;
+}
+
+.ecg-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.1) 50%,
+    transparent
+  );
+  animation: ecg-scan 3s linear infinite;
+}
+
+@keyframes ecg-pulse {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.12;
+  }
+}
+
+@keyframes ecg-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
